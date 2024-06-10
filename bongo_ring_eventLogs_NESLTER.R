@@ -42,11 +42,12 @@ file_urls <- c(
   'https://nes-lter-data.whoi.edu/api/events/ar32.csv',
   'https://nes-lter-data.whoi.edu/api/events/ar38.csv',
   'https://nes-lter-data.whoi.edu/api/events/ar61b.csv', #ring net only
+  #'https://nes-lter-data.whoi.edu/api/events/ar66b.csv', #ring net only; not available
   'https://nes-lter-data.whoi.edu/api/events/ar28b.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/events/ar31a.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/events/ar34b.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/events/ar39b.csv' #ring net only
-  #'https://nes-lter-data.whoi.edu/api/events/AR63.csv'
+  #'https://nes-lter-data.whoi.edu/api/events/ar63.csv' #not available
 )
 
 # OOI? no bongo, no ring :
@@ -78,7 +79,7 @@ read_and_add_cruise <- function(url) {
 cruiseDat <- lapply(file_urls, read_and_add_cruise)
 
 listviewer::jsonedit(cruiseDat)
-purrr::map(cruiseDat, 2) 
+#purrr::map(cruiseDat, 2) 
 
 combined_data <- do.call(rbind, cruiseDat)
 
@@ -142,6 +143,7 @@ zoop_tows$Cast <- ifelse(zoop_tows$Cast != "" & grepl("Ring Net", zoop_tows$Inst
 zoop_tows$Cast <- ifelse(zoop_tows$Cast != "", gsub("^(B|R)0*([1-9]\\d*)[a-zA-Z]*$", "\\1\\2", zoop_tows$Cast), zoop_tows$Cast)
 # Correct the typo "BL16" to "B16"
 zoop_tows$Cast <- gsub("^BL", "B", zoop_tows$Cast)
+unique(zoop_tows$Cast)
 
 ## ---- There are missing/empty cells -> change all these to NAs
 # Replace empty cells with NA
