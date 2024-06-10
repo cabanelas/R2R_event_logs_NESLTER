@@ -88,7 +88,12 @@ AR63 <- read.csv("R2R_ELOG_AR63_FINAL_EVENTLOG.csv", header = T) %>%
   select(Message.ID, dateTime8601, Instrument, Action, Station, Cast,
          Latitude, Longitude, Comment, cruise)
 
-combined_data <- rbind(combined_data, AR63)
+AR66B <- read.csv("R2R_ELOG_AR66B.csv", header = T) %>%
+  mutate(cruise = toupper(Cruise)) %>% #change col name and make cruise name lowercase
+  select(Message.ID, dateTime8601, Instrument, Action, Station, Cast,
+         Latitude, Longitude, Comment, cruise)
+
+combined_data <- rbind(combined_data, AR63, AR66B)
 
 ## ------------------------------------------ ##
 #            Data Wrangling -----
