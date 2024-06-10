@@ -156,6 +156,9 @@ zoop_tows[zoop_tows == ""] <- NA
 
 ## ---- Add some date columns 
 
+#some entries have a "T" between date and time
+zoop_tows$dateTime8601 <- gsub("T", " ", zoop_tows$dateTime8601) 
+
 zoop_tows$date <- format(as.POSIXct(zoop_tows$dateTime8601, 
                                     format = "%Y-%m-%d %H:%M:%S+00:00", 
                                     tz="UTC"), "%Y-%m-%d")
