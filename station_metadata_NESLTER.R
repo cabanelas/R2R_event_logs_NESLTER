@@ -31,17 +31,18 @@ file_urls <- c(
   'https://nes-lter-data.whoi.edu/api/stations/en695.csv',
   'https://nes-lter-data.whoi.edu/api/stations/hrs2303.csv',
   'https://nes-lter-data.whoi.edu/api/stations/en706.csv',
-  #'https://nes-lter-data.whoi.edu/api/stations/en712.csv', # missing
-  #'https://nes-lter-data.whoi.edu/api/stations/en715.csv', # missing 
+  #'https://nes-lter-data.whoi.edu/api/stations/en712.csv', #not available
+  #'https://nes-lter-data.whoi.edu/api/stations/en715.csv', #not available 
   'https://nes-lter-data.whoi.edu/api/stations/ar77.csv',
   'https://nes-lter-data.whoi.edu/api/stations/ar32.csv',
   'https://nes-lter-data.whoi.edu/api/stations/ar38.csv',
   'https://nes-lter-data.whoi.edu/api/stations/ar61b.csv', #ring net only
+  'https://nes-lter-data.whoi.edu/api/stations/ar66b.csv', #ring net only / elog not available
   'https://nes-lter-data.whoi.edu/api/stations/ar28b.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/stations/ar31a.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/stations/ar34b.csv', #ring net only
   'https://nes-lter-data.whoi.edu/api/stations/ar39b.csv' #ring net only
-  #'https://nes-lter-data.whoi.edu/api/stations/AR63.csv'
+  #'https://nes-lter-data.whoi.edu/api/stations/ar63.csv' #not available
 )
 
 # OOI? no bongo, no ring :
@@ -57,4 +58,4 @@ read_and_add_cruise <- function(url) {
 
 cruiseDat <- lapply(file_urls, read_and_add_cruise)
 
-combined_data <- do.call(rbind, cruiseDat)
+combined_station_data <- do.call(rbind, cruiseDat)
